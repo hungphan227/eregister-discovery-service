@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: eregister-discovery-service
+  namespace: ingress-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eregister-discovery-service
+  template:
+    metadata:
+      labels:
+        app: eregister-discovery-service
+    spec:
+      containers:
+      - name: eregister-discovery-service
+        imagePullPolicy: Never
+        image: eregister-discovery-service
+        ports:
+        - containerPort: 8761
+#        volumeMounts:
+#        - mountPath: /var/log/eregister
+#          name: test-volume
+#      volumes:
+#      - name: test-volume
+#        hostPath:
+#          path: /home/hung/data/docker/docker-data/log/eregister
+#          type: Directory

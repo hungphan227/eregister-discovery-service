@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: eregister-discovery-service
+  namespace: ingress-nginx
+spec:
+  selector:
+    app: eregister-discovery-service
+  ports:
+  - name: http-port
+    protocol: TCP
+    targetPort: 8761
+    port: 8761
