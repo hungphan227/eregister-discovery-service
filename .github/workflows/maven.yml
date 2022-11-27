@@ -38,7 +38,7 @@ jobs:
     - name: Log in to Artifact Registry
       uses: docker/login-action@v2
       with:
-        registry: 'https://$ARTIFACT_REGISTRY'
+        registry: https://$ARTIFACT_REGISTRY
         username: '_json_key'
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push the Docker image
