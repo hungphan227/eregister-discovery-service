@@ -34,12 +34,12 @@ jobs:
     - name: Build with Maven
       run: mvn clean package
     - name: Build the Docker image
-      run: "docker build -t $ARTIFACT_REGISTRY/$GCP_PROJECT_ID/docker-repo/eregister-discovery-service --file docker/Dockerfile ./target"
+      run: docker build -t ${{ env.ARTIFACT_REGISTRY }}/${{ env.GCP_PROJECT_ID }}/docker-repo/eregister-discovery-service --file docker/Dockerfile ./target
     - name: Log in to Artifact Registry
       uses: docker/login-action@v2
       with:
-        registry: "https://$ARTIFACT_REGISTRY"
+        registry: https://${{ env.ARTIFACT_REGISTRY }}
         username: '_json_key'
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push the Docker image
-      run: "docker push $ARTIFACT_REGISTRY/$GCP_PROJECT_ID/docker-repo/eregister-discovery-service"
+      run: docker push ${{ env.ARTIFACT_REGISTRY }}/${{ env.GCP_PROJECT_ID }}/docker-repo/eregister-discovery-service
